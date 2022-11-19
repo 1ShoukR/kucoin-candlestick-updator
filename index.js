@@ -2,9 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const session = require('express-session');
 const app = express();
-
-
-
+const PORT = 3005;
+const testRoute = require("./routes/testRoute")
 
 
 
@@ -18,13 +17,16 @@ app.use(
 		secret: 'secret',
 		resave: false,
 		saveUninitialized: true,
-		store: store,
 		cookie: {
 			secure: false,
 			maxAge: 2592000000,
 		},
 	})
 );
-store.sync();
 app.use(express.json());
 app.use(cors());
+app.use("/test", testRoute)
+
+
+
+app.listen(PORT, console.log(`Listening on port ${PORT}`));
