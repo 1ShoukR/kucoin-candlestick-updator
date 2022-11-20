@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "ahzklxjm",
+    "password": "URnMFIMlxEyPvO9jo4nJXFkufOaS-KDF",
+    "database": "ahzklxjm",
+    "host": "peanut.db.elephantsql.com",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "root",
+    "password": "URnMFIMlxEyPvO9jo4nJXFkufOaS-KDF",
+    "database": "ahzklxjm",
+    "host": "peanut.db.elephantsql.com",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "ahzklxjm",
+    "password": "URnMFIMlxEyPvO9jo4nJXFkufOaS-KDF",
+    "database": "ahzklxjm",
+    "host": "peanut.db.elephantsql.com",
+    "dialect": "postgres"
+  }
+}
