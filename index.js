@@ -4,7 +4,9 @@ const session = require('express-session');
 const app = express();
 const PORT = 3005;
 const testRoute = require("./routes/testRoute")
-
+const store = new SequelizeStore({
+	db: models.sequelize,
+});
 
 
 
