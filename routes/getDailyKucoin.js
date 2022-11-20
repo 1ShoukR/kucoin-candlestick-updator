@@ -1,25 +1,32 @@
 const express = require('express');
 const router = express.Router();
-const { kliensData } = require("../sequelize/models")
+const axios = require('axios');
+const { kliensData } = require("../sequelize/models");
+const { response } = require('express');
 
 
 
-router.get("/get_daily_kucoin", (req, res) => {
-    const getData = async () => {
-        const response = await fetch(url, {
-            method: 'POST', // *GET, POST, PUT, DELETE, etc.
-            mode: 'cors', // no-cors, *cors, same-origin
-            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-            credentials: 'same-origin', // include, *same-origin, omit
-            headers: {
-            'Content-Type': 'application/json'
-            // 'Content-Type': 'application/x-www-form-urlencoded',
-          },
-            redirect: 'follow', // manual, *follow, error
-            referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-            body: JSON.stringify(data) // body data type must match "Content-Type" header
-        });
-        return response.json(); // parses JSON response into native JavaScript objects
+// set a timeout
+
+router.get("/get_daily_kucoin", async (req, res) => {
+    try {
+        axios
+            .get(
+                'https://api.kucoin.com/api/v1/market/candles?type=1min&symbol=BTC-USDT'
+            )
+            .then(function (response) {
+                // handle success
+                console.log(response.data.data[0]);
+                const tableData = {
+					startTime: response.data.data[0][0],
+                    openingPrice: response.data.data[0][1],
+				};
+                console.log("this is tabalData",tableData)
+            })
+    } catch (error) {
+        res.status("Error").send(error)
     }
 })
 
+
+module.exports = router
